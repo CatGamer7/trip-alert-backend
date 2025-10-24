@@ -1,0 +1,104 @@
+# ============================================
+# ☕ Kotlin + Spring Boot + Gradle + IntelliJ IDEA
+# ============================================
+
+HELP.md
+
+# === Gradle ===
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# Local Gradle settings
+gradle-app.setting
+
+# === Spring Boot / Logs ===
+spring.log
+*.log
+*.out
+*.tmp
+*.pid
+hs_err_pid*
+replay_pid*
+
+# === STS / Eclipse ===
+.apt_generated/
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache/
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+# === IntelliJ IDEA ===
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/dictionaries
+.idea/**/shelf/
+.idea/**/httpRequests/
+.idea/**/dataSources/
+.idea/**/dataSources.local.xml
+.idea/**/dynamic.xml
+.idea/**/gradle.xml
+.idea/**/libraries
+.idea/**/modules.xml
+.idea/**/uiDesigner.xml
+.idea/**/vcs.xml
+
+# === NetBeans ===
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# === VS Code ===
+.vscode/
+
+# === Kotlin ===
+.kotlin/
+
+# === Java / General ===
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+# === Test Reports ===
+build/reports/
+build/test-results/
+test-results/
+
+# === OS / Misc ===
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+*~
+*.tmp
+*.temp
+*.cache
+
+# === Optional: environment files ===
+.env
