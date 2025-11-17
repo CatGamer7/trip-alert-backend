@@ -22,21 +22,25 @@ class Trip(
     val name: String,
 
     @Column(columnDefinition = "geometry(Point, 4326)", nullable = false)
-    val origin: Point,
+    val origin: Point, // точка отправление
 
     @Column(columnDefinition = "geometry(Point, 4326)", nullable = false)
-    val destination: Point,
+    val destination: Point, // конечная точка маршрута
 
     @Column(name = "planned_time", nullable = false)
-    val plannedTime: LocalDateTime,
+    val plannedTime: LocalDateTime, // время выхода/выезда
 
     @Column(name = "arrival_time", nullable = false)
-    val arrivalTime: LocalDateTime,
+    val arrivalTime: LocalDateTime, // время прибытия
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transport_type", nullable = false)
-    val transportType: TransportType = TransportType.WALK,
+    val transportType: TransportType,
 
-    @Column(name = "alert_time", nullable = false)
-    val alertTime: LocalDateTime
+    @OneToOne(
+        mappedBy = "trip",
+        cascade = [CascadeType.ALL],
+        fetch = FetchType.LAZY
+    )
+    var reminder: Reminder? = null // связь с напоминанием
 )

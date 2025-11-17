@@ -11,8 +11,8 @@ data class CreateTripDTO(
     val destination: Point,
     val plannedTime: LocalDateTime,
     val arrivalTime: LocalDateTime,
-    val transportType: TransportType,
-    val alertTime: LocalDateTime
+    val transportType: TransportType = TransportType.WALK,
+    val reminderData: CreateReminderDTO,
 )
 
 data class UpdateTripDTO(
@@ -22,7 +22,7 @@ data class UpdateTripDTO(
     val plannedTime: LocalDateTime? = null,
     val arrivalTime: LocalDateTime? = null,
     val transportType: TransportType? = null,
-    val alertTime: LocalDateTime? = null
+    val reminderData: UpdateReminderDTO? = null,
 )
 
 data class TripResponseDTO(
@@ -34,5 +34,5 @@ data class TripResponseDTO(
     val plannedTime: LocalDateTime,
     val arrivalTime: LocalDateTime,
     val transportType: TransportType,
-    val alertTime: LocalDateTime
+    val reminder: ReminderResponseDTO? = null,
 )

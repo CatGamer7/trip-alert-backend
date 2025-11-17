@@ -3,7 +3,6 @@ package org.spring.tripreminder.dtos
 import java.time.LocalDateTime
 
 data class CreateReminderDTO(
-    val tripId: Long,
     val notificationTime: LocalDateTime
 )
 

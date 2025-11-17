@@ -4,8 +4,7 @@ import jakarta.validation.Valid
 import org.spring.tripreminder.dtos.CreateReminderDTO
 import org.spring.tripreminder.dtos.ReminderResponseDTO
 import org.spring.tripreminder.dtos.UpdateReminderDTO
-import org.spring.tripreminder.mappers.ReminderMapper
-import org.spring.tripreminder.repositories.ReminderRepository
+import org.spring.tripreminder.serivices.ReminderService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
@@ -16,55 +15,36 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.server.ResponseStatusException
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/trips/{tripId}/reminders")
 class ReminderController(
-    private val repository: ReminderRepository,
-    private val mapper: ReminderMapper
+    private val service: ReminderService
 ) {
-
-    @GetMapping("/reminders")
-    @ResponseStatus(HttpStatus.OK)
-    fun index(): List<ReminderResponseDTO> =
-        repository.findAll()
-            .map { mapper.toResponseDto(it) }
-
-    @PostMapping("/reminders")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun create(@Valid @RequestBody reminderData: CreateReminderDTO): ReminderResponseDTO {
-        val reminder = mapper.toEntity(reminderData)
-        repository.save(reminder)
-        return mapper.toResponseDto(reminder)
-    }
+    fun create(
+        @Valid @RequestBody reminderData: CreateReminderDTO,
+        @PathVariable("tripId") tripId: Long
+    ): ReminderResponseDTO = service.create(reminderData, tripId)
 
-    @GetMapping("/reminders/{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    fun show(@PathVariable("id") id: Long): ReminderResponseDTO {
-        val reminder = repository.findById(id)
-            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Reminder not found") }
-        return mapper.toResponseDto(reminder)
-    }
+    fun show(@PathVariable("id") id: Long,
+             @PathVariable("tripId") tripId: Long
+    ): ReminderResponseDTO = service.show(id, tripId)
 
-    @PutMapping("/reminders/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     fun update(
         @PathVariable("id") id: Long,
-        @Valid @RequestBody reminderData: UpdateReminderDTO): ReminderResponseDTO {
-        val reminder = repository.findById(id)
-            .orElseThrow { ResponseStatusException(HttpStatus.NOT_FOUND, "Reminder not found") }
-        mapper.updateEntity(reminder, reminderData)
-        repository.save(reminder)
-        return mapper.toResponseDto(reminder)
-    }
+        @PathVariable("tripId") tripId: Long,
+        @Valid @RequestBody reminderData: UpdateReminderDTO,
+    ): ReminderResponseDTO = service.update(id, tripId, reminderData)
 
-    @DeleteMapping("/reminders/{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    fun delete(@PathVariable("id") id: Long) {
-        if(!repository.existsById(id)){
-            throw ResponseStatusException(HttpStatus.NOT_FOUND, "Reminder not found")
-        }
-        repository.deleteById(id)
-    }
+    fun delete(
+        @PathVariable("id") id: Long,
+        @PathVariable("tripId") tripId: Long): Unit = service.delete(id, tripId)
 }
