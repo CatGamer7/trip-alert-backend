@@ -1,4 +1,4 @@
-package org.spring.tripreminder.config
+package org.spring.tripreminder.configs
 
 import com.fasterxml.jackson.databind.Module
 import org.locationtech.jts.geom.GeometryFactory

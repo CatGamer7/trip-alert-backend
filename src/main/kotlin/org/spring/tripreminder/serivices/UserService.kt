@@ -6,12 +6,14 @@ import org.spring.tripreminder.dtos.ResponseUserDTO
 import org.spring.tripreminder.dtos.UpdateUserDTO
 import org.spring.tripreminder.mappers.UserMapper
 import org.spring.tripreminder.repositories.UserRepository
+import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
 @Service
 class UserService(
     private val repository: UserRepository,
-    private val mapper: UserMapper
+    private val mapper: UserMapper,
+    private val passwordEncoder: PasswordEncoder
 ) {
 
     fun getAll(): List<ResponseUserDTO> =

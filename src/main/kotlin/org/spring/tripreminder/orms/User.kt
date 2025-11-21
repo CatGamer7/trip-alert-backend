@@ -21,11 +21,11 @@ class User(
     @Column(name = "user_id", nullable = false)
     val id: Long = 0,
 
-    @Column(name = "username", nullable = false, unique = true)
-    val username: String,
+    @field:Column(name = "username", nullable = false, unique = true)
+    private val username: String,
 
-    @Column(name = "password", nullable = false)
-    val password: String,
+    @field:Column(name = "password", nullable = false)
+    private val password: String,
 
     @Column(name = "time_offset", nullable = false)
     var timeOffset: Int,
@@ -44,8 +44,8 @@ class User(
 
     override fun getAuthorities(): Collection<GrantedAuthority?>? = ArrayList<GrantedAuthority>()
 
-    override fun getPassword(): String? = password
-    override fun getUsername(): String? = username
+    override fun getUsername(): String = username
+    override fun getPassword(): String = password
 
     override fun isAccountNonExpired(): Boolean = true
     override fun isAccountNonLocked(): Boolean = true
