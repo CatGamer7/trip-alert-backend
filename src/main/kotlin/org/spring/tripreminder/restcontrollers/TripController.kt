@@ -1,7 +1,6 @@
 package org.spring.tripreminder.restcontrollers
 
 import jakarta.validation.Valid
-import org.spring.tripreminder.dtos.CreateReminderDTO
 import org.spring.tripreminder.dtos.CreateTripDTO
 import org.spring.tripreminder.dtos.TripResponseDTO
 import org.spring.tripreminder.dtos.UpdateTripDTO

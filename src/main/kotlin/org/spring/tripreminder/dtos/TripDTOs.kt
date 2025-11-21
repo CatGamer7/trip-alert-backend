@@ -34,5 +34,5 @@ data class TripResponseDTO(
     val plannedTime: LocalDateTime,
     val arrivalTime: LocalDateTime,
     val transportType: TransportType,
-    val reminder: ReminderResponseDTO? = null,
+    val reminder: ReminderResponseDTO
 )

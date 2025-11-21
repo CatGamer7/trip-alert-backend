@@ -10,6 +10,8 @@ import jakarta.persistence.Id
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import org.spring.tripreminder.TransportType
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 @Entity
 @Table(name = "users")
@@ -26,10 +28,11 @@ class User(
     val password: String,
 
     @Column(name = "time_offset", nullable = false)
-    val timeOffset: Int,
+    var timeOffset: Int,
 
     @Column(name = "preferred_transport", nullable = false)
-    val preferredTransport: TransportType = TransportType.WALK,
+    var preferredTransport: TransportType = TransportType.WALK,
+): UserDetails {
 
     @OneToMany(
         mappedBy = "user",
@@ -37,4 +40,15 @@ class User(
         cascade = [CascadeType.ALL]
     )
     val trips: MutableSet<Trip> = mutableSetOf()
-)
+
+
+    override fun getAuthorities(): Collection<GrantedAuthority?>? = ArrayList<GrantedAuthority>()
+
+    override fun getPassword(): String? = password
+    override fun getUsername(): String? = username
+
+    override fun isAccountNonExpired(): Boolean = true
+    override fun isAccountNonLocked(): Boolean = true
+    override fun isCredentialsNonExpired(): Boolean = true
+    override fun isEnabled(): Boolean = true
+}

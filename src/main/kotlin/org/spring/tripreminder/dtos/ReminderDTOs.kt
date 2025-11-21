@@ -8,7 +8,7 @@ data class CreateReminderDTO(
 
 data class UpdateReminderDTO(
     val notificationTime: LocalDateTime? = null,
-    val sent: Boolean? = false
+    val sent: Boolean? = null
 )
 
 data class ReminderResponseDTO(

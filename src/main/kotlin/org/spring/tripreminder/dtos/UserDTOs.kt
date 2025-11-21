@@ -6,8 +6,8 @@ import org.spring.tripreminder.TransportType
 data class CreateUserDTO(
     val username: String,
     val password: String,
-    val timeOffset: Int = 15,
-    val preferredTransport: TransportType = TransportType.WALK
+    val timeOffset: Int = 10,
+    val preferredTransport: TransportType,
 )
 
 data class UpdateUserDTO(

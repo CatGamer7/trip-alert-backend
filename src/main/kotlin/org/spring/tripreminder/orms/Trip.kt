@@ -35,12 +35,11 @@ class Trip(
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transport_type", nullable = false)
-    val transportType: TransportType,
-
+    val transportType: TransportType
+){
     @OneToOne(
         mappedBy = "trip",
-        cascade = [CascadeType.ALL],
-        fetch = FetchType.LAZY
+        cascade = [CascadeType.ALL]
     )
     var reminder: Reminder? = null // связь с напоминанием
-)
+}
