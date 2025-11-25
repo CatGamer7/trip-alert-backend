@@ -21,6 +21,7 @@ class UserService(
 
     fun create(userData: CreateUserDTO): ResponseUserDTO  {
         val user = mapper.toEntity(userData)
+        user.password = passwordEncoder.encode(userData.password)
         repository.save(user)
         return mapper.toResponseDto(user)
     }

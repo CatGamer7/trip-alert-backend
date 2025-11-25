@@ -25,7 +25,7 @@ class User(
     private val username: String,
 
     @field:Column(name = "password", nullable = false)
-    private val password: String,
+    private var password: String,
 
     @Column(name = "time_offset", nullable = false)
     var timeOffset: Int,
@@ -46,6 +46,9 @@ class User(
 
     override fun getUsername(): String = username
     override fun getPassword(): String = password
+    fun setPassword(newPassword: String) {
+        this.password = newPassword
+    }
 
     override fun isAccountNonExpired(): Boolean = true
     override fun isAccountNonLocked(): Boolean = true
