@@ -1,9 +1,5 @@
-FROM ubuntu:latest
-LABEL authors="nijen"
-
-FROM openjdk:23-jdk-slim
+FROM eclipse-temurin:21-jdk-jammy
 WORKDIR /app
-
+LABEL authors="nijen0"
 COPY build/libs/*.jar app.jar
-
 ENTRYPOINT ["java", "-jar", "app.jar"]
