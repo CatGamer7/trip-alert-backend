@@ -1,9 +1,10 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.25'
+    id 'org.jetbrains.kotlin.kapt' version '1.9.25'
+    id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.25'
     id 'org.jetbrains.kotlin.plugin.spring' version '1.9.25'
     id 'org.springframework.boot' version '3.5.7'
     id 'io.spring.dependency-management' version '1.1.7'
-    id 'org.jetbrains.kotlin.plugin.jpa' version '1.9.25'
 }
 
 group = 'org.Spring'
@@ -23,13 +24,30 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'com.fasterxml.jackson.module:jackson-module-kotlin'
+    implementation 'org.postgresql:postgresql:42.7.4'
+    implementation 'org.locationtech.jts:jts-core:1.19.0'
+    implementation 'org.hibernate.orm:hibernate-spatial:6.6.33.Final'
     implementation 'org.jetbrains.kotlin:kotlin-reflect'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'net.javacrumbs.json-unit:json-unit-assertj:3.4.1'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    implementation 'org.n52.jackson:jackson-datatype-jts:1.2.10'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    kapt 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+    //developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.jetbrains.kotlin:kotlin-test-junit5'
+    testImplementation 'net.datafaker:datafaker:2.5.3'
+    testImplementation 'org.instancio:instancio-core:2.16.1'
+    testImplementation 'org.instancio:instancio-junit:2.16.1'
+    //testImplementation 'net.javacrumbs.jsonunit:jsonunit-assertj:2.38.0'
+    //testImplementation 'org.openapitools:jackson-nullable:0.5.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
+
 
 kotlin {
     compilerOptions {
