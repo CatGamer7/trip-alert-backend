@@ -19,8 +19,14 @@ import org.spring.tripreminder.orms.User
 abstract class TripMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "reminder", source = "dto.reminderData")
+    @Mapping(target = "reminder", ignore = true)
     @Mapping(target = "user", source = "user")
+    @Mapping(target = "name", source = "dto.name")
+    @Mapping(target = "origin", source = "dto.origin")
+    @Mapping(target = "destination", source = "dto.destination")
+    @Mapping(target = "plannedTime", source = "dto.plannedTime")
+    @Mapping(target = "arrivalTime", source = "dto.arrivalTime")
+    @Mapping(target = "transportType", source = "dto.transportType")
     abstract fun toEntity(dto: CreateTripDTO, user: User): Trip
 
     @AfterMapping

@@ -12,10 +12,10 @@ class Reminder(
     val id: Long = 0,
 
     @Column(name = "notification_time", nullable = false)
-    val notificationTime: LocalDateTime, // время, когда необходимо отпарвить напоминаение
+    var notificationTime: LocalDateTime, // время, когда необходимо отпарвить напоминаение
 
     @Column(name = "sent")
-    val sent: Boolean = false // отправлено или нет
+    var sent: Boolean = false // отправлено или нет
 ){
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "trip_id", unique = true, nullable = false)

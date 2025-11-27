@@ -27,9 +27,12 @@ class TripService(
         val user = userRepository.findById(tripData.userId)
             .orElseThrow{ UserNotFoundException( "User ${tripData.userId} not found") }
 
+        println(tripData.arrivalTime)
+
         val trip = mapper.toEntity(tripData, user)
         val savedTrip = repository.save(trip)
 
+        reminderService.create(tripData.reminderData, savedTrip.id)
         return mapper.toResponseDto(savedTrip)
     }
 

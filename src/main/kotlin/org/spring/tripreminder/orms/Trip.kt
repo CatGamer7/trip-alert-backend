@@ -6,7 +6,12 @@ import org.spring.tripreminder.TransportType
 import java.time.LocalDateTime
 
 @Entity
-@Table(name = "trips")
+@Table(
+    name = "trips",
+    uniqueConstraints = [
+        UniqueConstraint(columnNames = ["name", "user_id"], name = "uk_user_trip_name")
+    ]
+)
 class Trip(
 
     @Id
@@ -18,25 +23,25 @@ class Trip(
     @JoinColumn(name = "user_id", nullable = false)
     var user: User,
 
-    @Column(nullable = false, unique = true)
-    val name: String,
+    @Column(nullable = false)
+    var name: String = "",
 
     @Column(columnDefinition = "geometry(Point, 4326)", nullable = false)
-    val origin: Point, // точка отправление
+    var origin: Point? = null, // точка отправление
 
     @Column(columnDefinition = "geometry(Point, 4326)", nullable = false)
-    val destination: Point, // конечная точка маршрута
+    var destination: Point? = null, // конечная точка маршрута
 
     @Column(name = "planned_time", nullable = false)
-    val plannedTime: LocalDateTime, // время выхода/выезда
+    var plannedTime: LocalDateTime? = null, // время выхода/выезда
 
     @Column(name = "arrival_time", nullable = false)
-    val arrivalTime: LocalDateTime, // время прибытия
+    var arrivalTime: LocalDateTime? = null, // время прибытия
 
     @Enumerated(EnumType.STRING)
     @Column(name = "transport_type", nullable = false)
-    val transportType: TransportType
-){
+    var transportType: TransportType? = null
+) {
     @OneToOne(
         mappedBy = "trip",
         cascade = [CascadeType.ALL]
