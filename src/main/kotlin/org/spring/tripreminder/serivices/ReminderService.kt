@@ -1,7 +1,7 @@
 package org.spring.tripreminder.serivices
 
-import exceptions.ReminderNotFoundException
-import exceptions.TripNotFoundException
+import org.spring.tripreminder.exceptions.ReminderNotFoundException
+import org.spring.tripreminder.exceptions.TripNotFoundException
 import org.spring.tripreminder.dtos.CreateReminderDTO
 import org.spring.tripreminder.dtos.ReminderResponseDTO
 import org.spring.tripreminder.dtos.UpdateReminderDTO

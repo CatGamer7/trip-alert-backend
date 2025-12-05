@@ -1,3 +1,3 @@
-package exceptions
+package org.spring.tripreminder.exceptions
 
-class ReminderNotFoundException(message: String) : RuntimeException()
+class ReminderNotFoundException(message: String) : RuntimeException(message)

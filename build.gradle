@@ -35,6 +35,7 @@ dependencies {
     implementation 'org.n52.jackson:jackson-datatype-jts:1.2.10'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
     kapt 'org.mapstruct:mapstruct-processor:1.5.5.Final'
     //developmentOnly 'org.springframework.boot:spring-boot-devtools'
     testImplementation 'org.springframework.security:spring-security-test'

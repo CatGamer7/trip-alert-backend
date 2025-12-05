@@ -1,3 +1,3 @@
-package exceptions
+package org.spring.tripreminder.exceptions
 
-class TripNotFoundException(message: String) : RuntimeException()
+class TripNotFoundException(message: String) : RuntimeException(message)

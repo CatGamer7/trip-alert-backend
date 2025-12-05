@@ -1,6 +1,6 @@
 package org.spring.tripreminder.serivices
 
-import exceptions.UserNotFoundException
+import org.spring.tripreminder.exceptions.UserNotFoundException
 import org.spring.tripreminder.dtos.CreateUserDTO
 import org.spring.tripreminder.dtos.ResponseUserDTO
 import org.spring.tripreminder.dtos.UpdateUserDTO
